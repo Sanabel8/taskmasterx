@@ -17,34 +17,24 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
-        Button topBtn = findViewById(R.id.top);
+        Button topBtn = findViewById(R.id.submitbtn);
         topBtn.setText("all Task");
         topBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "the button was cicked", Toast.LENGTH_SHORT).show();
-                EditText taskTitle = findViewById(R.id.editTextTextPersonName);
-                String taskTitleValue = taskTitle.getText().toString();
-
-                        Intent goToAllTask = new Intent(AddTask.this,MainActivity.class);
-                startActivity(goToAllTask);
-            }
-        });
-        Button secBtn = findViewById(R.id.secbutton);
-        secBtn.setText("submit");
-        secBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "the button was cicked", Toast.LENGTH_SHORT).show();
-                EditText taskDescription = findViewById(R.id.editTextTextPersonName2);
-                String taskDescriptionValue = taskDescription.getText().toString();
-
                 Intent goToAllTask = new Intent(AddTask.this,MainActivity.class);
                 startActivity(goToAllTask);
             }
         });
-        TextView AddText = findViewById(R.id.addText);
-        AddText.setText("Add task");
+        Button addTaskPageBtn = findViewById(R.id.submitbtn);
+        addTaskPageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Add Task Done !", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
 
 

@@ -8,12 +8,12 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/addTaskBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@color/pink"
-        android:text="Button"
+        android:text="Add Task"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,32 +24,29 @@
         app:layout_constraintVertical_bias="0.812" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="80dp"
-        android:layout_height="70dp"
+        android:id="@+id/myTasksText"
+        android:layout_width="100dp"
+        android:layout_height="74dp"
         android:layout_marginEnd="200dp"
-        android:layout_marginBottom="70dp"
-        android:text="task"
+        android:text="My tasks"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintHorizontal_bias="0.603"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/allTaskBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
         android:layout_weight="2"
-
-        android:background="@color/pink"
-        android:text="Button"
+        android:text="All task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toEndOf="@+id/button11"
+        app:layout_constraintStart_toEndOf="@+id/addTaskBtn"
         app:layout_constraintTop_toBottomOf="@+id/heroimg"
         app:layout_constraintVertical_bias="0.41"
         tools:ignore="TextContrastCheck" />

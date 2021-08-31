@@ -15,12 +15,11 @@ public class AllTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_task);
 
-        TextView text = findViewById(R.id.allTasxText);
+        TextView text = findViewById(R.id.AllTaskText);
         text.setText("all task");
 
-        Button reverseBut = findViewById(R.id.button1);
-        reverseBut.setText("back button");
-        reverseBut.setOnClickListener(new View.OnClickListener() {
+        Button goToHomeBtn = findViewById(R.id.goHomeBtn);
+        goToHomeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent AllTask = new Intent(AllTask.this, MainActivity.class);

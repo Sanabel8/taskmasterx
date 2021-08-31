@@ -1,7 +1,6 @@
 package com.example.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,29 +16,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.button11);
+        Button button = (Button) findViewById(R.id.addTaskBtn);
         button.setText("add Task");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "the button was cicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "the button was cicked", Toast.LENGTH_SHORT).show();
                 Intent goToAddTask = new Intent(MainActivity.this,AddTask.class);
                 startActivity(goToAddTask);
             }
         });
-        Button button2 = (Button) findViewById(R.id.button12);
+        Button button2 = (Button) findViewById(R.id.allTaskBtn);
         button2.setText("all Task");
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "the button was cicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "the button was cicked", Toast.LENGTH_SHORT).show();
 
                 Intent goToAllTask = new Intent(MainActivity.this,AllTask.class);
                 startActivity(goToAllTask);
             }
         });
-        TextView textView = findViewById(R.id.welcomeText);
-        textView.setText("welcome In Home Page");
+//        TextView textView = findViewById(R.id.welcomeText);
+//        textView.setText("welcome In Home Page");
 
 
     }
