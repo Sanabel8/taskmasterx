@@ -3,11 +3,12 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,36 +17,70 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.addTaskBtn);
-        button.setText("add Task");
-        button.setOnClickListener(new View.OnClickListener() {
+
+        Button btnAddTask = (Button) findViewById(R.id.addTaskBtn);
+        btnAddTask.setText("add Task");
+        btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(), "the button was cicked", Toast.LENGTH_SHORT).show();
                 Intent goToAddTask = new Intent(MainActivity.this,AddTask.class);
                 startActivity(goToAddTask);
             }
         });
-        Button button2 = (Button) findViewById(R.id.allTaskBtn);
-        button2.setText("all Task");
-        button2.setOnClickListener(new View.OnClickListener() {
+
+
+        Button btnAllTask = (Button) findViewById(R.id.allTaskBtn);
+        btnAllTask.setText("all Task");
+        btnAllTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(), "the button was cicked", Toast.LENGTH_SHORT).show();
-
                 Intent goToAllTask = new Intent(MainActivity.this,AllTask.class);
                 startActivity(goToAllTask);
             }
         });
-//        TextView textView = findViewById(R.id.welcomeText);
-//        textView.setText("welcome In Home Page");
 
+        //lab27
+        Button showtbtn = findViewById(R.id.showingBtn);
+        showtbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToShowing = new Intent(MainActivity.this,TaskDetailPage.class);
+                String address = showtbtn.getText().toString();
+                goToShowing.putExtra("address",address);
+                startActivity(goToShowing);
+            }
+        });
+        Button BrowseBtn = findViewById(R.id.browsingBtn);
+        BrowseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToBrowse = new Intent(MainActivity.this,TaskDetailPage.class);
+               String address = BrowseBtn.getText().toString();
+                startActivity(goToBrowse);
+            }
+        });
+        Button settingbtn = findViewById(R.id.settitngbtn);
+        settingbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToSettingPage = new Intent(MainActivity.this,SettingsPage.class);
+                startActivity(goToSettingPage);
+            }
+        });
 
     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
+        String welcomeMessage = "Hello ";
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String nameFromSetting = sharedPreferences.getString("username", "viewName");
+
+        TextView nameView = findViewById(R.id.hiUserName);
+        nameView.setText(welcomeMessage + nameFromSetting+ "in tasks app");
     }
 
     @Override
@@ -59,9 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
+    protected void onStart() { super.onStart(); }
 
     @Override
     protected void onRestart() {
