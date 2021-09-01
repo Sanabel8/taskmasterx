@@ -11,8 +11,9 @@ allow users to type in details about a new task, specifically a title and a body
 ### All Tasks
 The all tasks page should just be an image with a back button; it needs no functionality.
 
-[screen shots](screenshote)
-
+![main](screenshote/main page.jpeg)
+![add](screenshote/all task.jpeg)
+![all](screenshote/add task.jpg)
 
 
 #  Lab:  27 - Data in TaskMaster
@@ -30,3 +31,6 @@ The main page should be modified to contain three different buttons with hardcod
 
 The homepage should also contain a button to visit the Settings page, and once the user has entered their username, it should display “{username}’s tasks” above the three task buttons.
 
+![main27](screenshote/homepage27.jpeg)
+![details](screenshote/details.jpeg)
+![setting](screenshote/seetingpage.jpeg)
