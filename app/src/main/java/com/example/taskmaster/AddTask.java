@@ -17,15 +17,15 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
-        Button topBtn = findViewById(R.id.submitbtn);
-        topBtn.setText("all Task");
+        Button topBtn =(Button) findViewById(R.id.TopBtnToMain);
         topBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToAllTask = new Intent(AddTask.this,MainActivity.class);
-                startActivity(goToAllTask);
+                Intent goToMain = new Intent(AddTask.this,MainActivity.class);
+                startActivity(goToMain);
             }
         });
+
         Button addTaskPageBtn = findViewById(R.id.submitbtn);
         addTaskPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -83,7 +83,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="٠dp"
+        android:layout_marginBottom="0dp"
         android:text="Total Task : 0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,11 +93,11 @@
         app:layout_constraintVertical_bias="0.803" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/TopBtnToMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="٠dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="90dp"
         android:text="Main page"
         app:layout_constraintBottom_toTopOf="@+id/addText"

@@ -50,13 +50,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToShowing);
             }
         });
-        Button BrowseBtn = findViewById(R.id.browsingBtn);
-        BrowseBtn.setOnClickListener(new View.OnClickListener() {
+        Button displayBtn = findViewById(R.id.displayingBtn);
+        displayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToBrowse = new Intent(MainActivity.this,TaskDetailPage.class);
-               String address = BrowseBtn.getText().toString();
-                startActivity(goToBrowse);
+                Intent goTodisplay = new Intent(MainActivity.this,TaskDetailPage.class);
+               String address = displayBtn.getText().toString();
+                goTodisplay.putExtra("address",address);
+                startActivity(goTodisplay);
             }
         });
         Button settingbtn = findViewById(R.id.settitngbtn);

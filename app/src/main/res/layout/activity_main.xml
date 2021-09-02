@@ -67,7 +67,7 @@
         android:id="@+id/hiUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="٠dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="10dp"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/heroimg"
@@ -81,8 +81,8 @@
         android:id="@+id/showingBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="٠dp"
-        android:layout_marginEnd="٠dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         android:text="show"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/heroimg"
@@ -92,10 +92,10 @@
         app:layout_constraintVertical_bias="0.65" />
 
     <Button
-        android:id="@+id/browsingBtn"
+        android:id="@+id/displayingBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Browse"
+        android:text="Display"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.441"

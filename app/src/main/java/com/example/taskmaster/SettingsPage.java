@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SettingsPage extends AppCompatActivity {
 
@@ -24,6 +25,8 @@ public class SettingsPage extends AppCompatActivity {
 
                 EditText instructorNameField = findViewById(R.id.addedUserName);
                 String addUserName = instructorNameField.getText().toString();
+
+                Toast.makeText(getApplicationContext(), "Add username Done !", Toast.LENGTH_SHORT).show();
 
                 sharedPreferencesEditor.putString("userName", addUserName);
                 sharedPreferencesEditor.apply();
