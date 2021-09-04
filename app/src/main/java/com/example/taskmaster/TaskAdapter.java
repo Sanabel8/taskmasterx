@@ -51,16 +51,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskAdapter.TaskViewHolder holder, int position) {
         holder.task = allTasks.get(position);
 
-//        TextView title = holder.itemView.findViewById(R.id.titleInFragment);
-//        TextView body = holder.itemView.findViewById(R.id.bodyInFragment);
-//        TextView state = holder.itemView.findViewById(R.id.stateInFragment);
+        TextView titleTask = holder.itemView.findViewById(R.id.textTitle);
+        TextView bodyTask = holder.itemView.findViewById(R.id.textBody);
+        TextView stateTask = holder.itemView.findViewById(R.id.textState);
 
-//        title.setText(holder.task.title);
-//        body.setText(Integer.toString(holder.task.body));
-//        state.setText(Integer.toString(holder.task.state));
+        titleTask.setText(holder.task.title);
+        bodyTask.setText(holder.task.body);
+        stateTask.setText(holder.task.state);
 
-        Button taskButton = holder.itemView.findViewById(R.id.taskFragmentButton);
-        taskButton.setText(holder.task.title);
+//        Button btn = holder.itemView.findViewById(R.id.button);
+//        btn.setText(holder.task.title);
 
 
     }
