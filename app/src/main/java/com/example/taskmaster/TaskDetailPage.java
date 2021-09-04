@@ -1,10 +1,10 @@
 package com.example.taskmaster;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class TaskDetailPage extends AppCompatActivity {
 
@@ -18,11 +18,21 @@ public class TaskDetailPage extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String titleMove = intent.getExtras().getString("title");
+        String forName = intent.getExtras().getString("titleTask");
+        String forBody = intent.getExtras().getString("bodyTask");
+        String forState = intent.getExtras().getString("stateTask");
 
-        //to set text name
-        TextView tileNameForDetailsPage = findViewById(R.id.titleDetailsPage);
-        tileNameForDetailsPage.setText(titleMove);
+        TextView textViewForName = findViewById(R.id.nameOfTask);
+        TextView textViewForBody = findViewById(R.id.textForBody);
+        TextView textViewForState = findViewById(R.id.textForState);
+
+
+        textViewForName.setText(forName);
+        textViewForBody.setText(forBody);
+        textViewForState.setText(forState);
+
+
+
 
 
     }

@@ -1,9 +1,9 @@
 package com.example.taskmaster;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,7 +32,29 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             this.itemView = itemView;
+
+
+            itemView.findViewById(R.id.GoToDetailFragment).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent goToDetailPageActivity = new Intent(view.getContext(),TaskDetailPageActivity.class);
+                    goToDetailPageActivity.putExtra("taskName",task.title);
+                    view.getContext().startActivity(goToDetailPageActivity);
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent goToDetailPageActivity = new Intent(view.getContext(),TaskDetailPageActivity.class);
+                    goToDetailPageActivity.putExtra("taskName",task.title);
+                    goToDetailPageActivity.putExtra("taskBody",task.body);
+                    goToDetailPageActivity.putExtra("taskStatus",task.state);
+                    view.getContext().startActivity(goToDetailPageActivity);
+                }
+            });
         }
+
     }
 
 
