@@ -1,6 +1,8 @@
 package com.example.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +11,8 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,6 +72,30 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToSettingPage);
             }
         });
+
+
+        //lab28
+        ArrayList<Task> allTasks = new ArrayList<Task>();
+        allTasks.add(new Task("Helping people"
+                ,"Happiness begins from the moment you do something for others. Those who consistently help others, are happy, and do not come across any obstacles in their lives. Research indicates that they are less stressed and experience improved mental health."
+                ,"state: new"));
+        allTasks.add(new Task("volunteer skills",
+                "Volunteering is described as an unpaid activity where someone gives their time to help a not-for-profit organisation or an individual who they are not related to."
+                ,"state: assigned"));
+        allTasks.add(new Task("watching match",
+                "Find people watching match stock images in HD and millions of other royalty-free stock photos, illustrations and vectors in the Shutterstock collection."
+                ,"state: in progress"));
+        allTasks.add(new Task("learning cooking",
+                "Expand your mind. Learning to cook will help you understand world cultures, customs and flavors. You will also learn life skills like eating healthy, budgeting ..."
+                ,"state: complete"));
+
+
+        // get the recycler view
+        RecyclerView allTASKsRecuclerView = findViewById(R.id.recycleViewListtask);
+        // set a layout manager for this view
+        allTASKsRecuclerView.setLayoutManager(new LinearLayoutManager(this));
+        // set the adapter for this recyclerView
+        allTASKsRecuclerView.setAdapter(new TaskAdapter(allTasks));
 
     }
 
