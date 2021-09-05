@@ -15,9 +15,9 @@ public class TaskFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 ="title";
-    private static final String ARG_PARAM2  ="body";
-    private static final String ARG_PARAM3 ="state";
+    private static final String ARG_PARAM1 ="titleTask";
+    private static final String ARG_PARAM2  ="bodyTask";
+    private static final String ARG_PARAM3 ="stateTask";
 
     // TODO: Rename and change types of parameters
     private String mTaskTitle;
@@ -28,7 +28,7 @@ public class TaskFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /*
+    /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *

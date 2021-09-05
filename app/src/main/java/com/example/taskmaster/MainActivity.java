@@ -1,9 +1,5 @@
 package com.example.taskmaster;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,7 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -90,12 +92,22 @@ public class MainActivity extends AppCompatActivity {
                 ,"state: complete"));
 
 
+        TaskDb taskDB = Room.databaseBuilder(getApplicationContext(), TaskDb.class, "TaskDatabase").allowMainThreadQueries().build();
+
+        List<Task> infoForList;
+        TaskDao taskDao;
+        taskDao = taskDB.taskDao();
+        infoForList = taskDao.getAll();
+
         // get the recycler view
         RecyclerView allTASKsRecuclerView = findViewById(R.id.recycleViewListtask);
         // set a layout manager for this view
         allTASKsRecuclerView.setLayoutManager(new LinearLayoutManager(this));
         // set the adapter for this recyclerView
-        allTASKsRecuclerView.setAdapter(new TaskAdapter(allTasks));
+        allTASKsRecuclerView.setAdapter(new TaskAdapter(infoForList));
+
+
+
 
     }
 
@@ -106,10 +118,10 @@ public class MainActivity extends AppCompatActivity {
         String welcomeMessage = "Hello ";
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String nameFromSetting = sharedPreferences.getString("username", "viewName");
+        String nameFromSetting = sharedPreferences.getString("username", "sanbael");
 
         TextView nameView = findViewById(R.id.hiUserName);
-        nameView.setText(welcomeMessage + nameFromSetting+ "in tasks app");
+        nameView.setText(welcomeMessage + nameFromSetting);
     }
 
     @Override

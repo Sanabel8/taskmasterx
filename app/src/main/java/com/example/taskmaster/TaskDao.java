@@ -9,7 +9,7 @@ import java.util.List;
 
 @Dao
 public interface TaskDao {
-    @Query("Select * from task")
+    @Query("Select * from tasks")
     List<Task> getAll();
 
     @Insert
