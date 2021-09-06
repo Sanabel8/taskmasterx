@@ -73,3 +73,20 @@ Refactor homepage’s RecyclerView to display all Task entities in database.
 
 ### Detail Page
 Ensure that the description and status of a tapped task are also displayed on the detail page, in addition to the title.
+
+## screenshots
+![main-page](screenshote\main29.jpeg)
+![addTask-page](screenshote\addTask29.jpeg)
+![setting-page](screenshote\setting29.jpeg)
+![detalies-page](screenshote\detailes29.jpeg)
+
+
+
+
+
+
+
+
+
+
+
