@@ -79,3 +79,14 @@ Ensure that the description and status of a tapped task are also displayed on th
 ![addTask-page](screenshote\addTask29.jpeg)
 ![setting-page](screenshote\setting29.jpeg)
 ![detalies-page](screenshote\detailes29.jpeg)
+
+
+
+
+
+
+
+
+
+
+
