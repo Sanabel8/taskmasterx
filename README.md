@@ -54,3 +54,22 @@ Ensure that you can tap on any one of the Tasks in the RecyclerView, and it will
 
 # screen shote
 ![main-page](screenshote\main page lab28.jpg)
+
+# lab29 Room
+## Overview
+ refactor your model layer to store Task data in a local database by using room 
+
+The Room persistence library provides an abstraction layer over SQLite to allow fluent database access while harnessing the full power of SQLite
+
+# Feature Tasks
+### Task Model and Room
+set up Room in  application, and modify Task class to be an Entity.
+
+### Add Task Form
+Modify Add Task form to save the data entered in as a Task in local database.
+
+### Homepage
+Refactor homepage’s RecyclerView to display all Task entities in database.
+
+### Detail Page
+Ensure that the description and status of a tapped task are also displayed on the detail page, in addition to the title.

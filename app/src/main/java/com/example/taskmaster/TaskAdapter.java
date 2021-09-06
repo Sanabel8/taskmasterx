@@ -1,9 +1,9 @@
 package com.example.taskmaster;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,7 +32,25 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             this.itemView = itemView;
+            itemView.findViewById(R.id.goToDetailesPage).setOnClickListener(View->{
+                Intent goToDetaiels = new Intent(View.getContext(), TaskDetailPage.class);
+                goToDetaiels.putExtra("TaskName" , task.getTitle());
+                goToDetaiels.putExtra("TaskBody" , task.getBody());
+                goToDetaiels.putExtra("TaskState" , task.getState());
+                View.getContext().startActivity(goToDetaiels);
+            });
+//            itemView.findViewById(R.id.goToDetailesPage).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent goToDetailPageActivity = new Intent(view.getContext(),TaskDetailPage.class);
+//                    goToDetailPageActivity.putExtra("taskName",task.title);
+//                    view.getContext().startActivity(goToDetailPageActivity);
+//                }
+//            });
+
+
         }
+
     }
 
 
@@ -52,16 +70,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.task = allTasks.get(position);
 
         TextView titleTask = holder.itemView.findViewById(R.id.textTitle);
-        TextView bodyTask = holder.itemView.findViewById(R.id.textBody);
-        TextView stateTask = holder.itemView.findViewById(R.id.textState);
+//        TextView bodyTask = holder.itemView.findViewById(R.id.textBody);
+//        TextView stateTask = holder.itemView.findViewById(R.id.textState);
 
-        titleTask.setText(holder.task.title);
-        bodyTask.setText(holder.task.body);
-        stateTask.setText(holder.task.state);
-
-//        Button btn = holder.itemView.findViewById(R.id.button);
-//        btn.setText(holder.task.title);
-
+        titleTask.setText(holder.task.getTitle());
+//        bodyTask.setText(holder.task.getBody());
+//        stateTask.setText(holder.task.getState());
 
     }
 
