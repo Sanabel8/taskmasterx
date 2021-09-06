@@ -2,6 +2,8 @@ package com.example.taskmaster;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,15 +15,23 @@ public class TaskDetailPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail_page);
 
-        Intent goToAllTask = new Intent(TaskDetailPage.this,AllTask.class);
-        startActivity(goToAllTask);
+//        Intent goToHome = new Intent(TaskDetailPage.this,AllTask.class);
+//        startActivity(goToHome);
+        Button goHome = findViewById(R.id.home2);
+        goHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToShowing = new Intent(TaskDetailPage.this,MainActivity.class);
 
+                startActivity(goToShowing);
+            }
+        });
 
         Intent intent = getIntent();
 
-        String forName = intent.getExtras().getString("titleTask");
-        String forBody = intent.getExtras().getString("bodyTask");
-        String forState = intent.getExtras().getString("stateTask");
+        String forName = intent.getExtras().getString("TaskName");
+        String forBody = intent.getExtras().getString("TaskBody");
+        String forState = intent.getExtras().getString("TaskState");
 
         TextView textViewForName = findViewById(R.id.nameOfTask);
         TextView textViewForBody = findViewById(R.id.textForBody);
@@ -33,4 +43,5 @@ public class TaskDetailPage extends AppCompatActivity {
         textViewForState.setText(forState);
 
     }
+
 }

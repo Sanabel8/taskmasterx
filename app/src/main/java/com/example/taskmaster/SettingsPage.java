@@ -30,7 +30,7 @@ public class SettingsPage extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Add username Done !", Toast.LENGTH_SHORT).show();
 
-                sharedPreferencesEditor.putString("userName", addUserName);
+                sharedPreferencesEditor.putString("username", addUserName);
                 sharedPreferencesEditor.apply();
 
                 Intent intent = new Intent(SettingsPage.this,MainActivity.class);

@@ -32,7 +32,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             this.itemView = itemView;
-            itemView.setOnClickListener(View->{
+            itemView.findViewById(R.id.goToDetailesPage).setOnClickListener(View->{
                 Intent goToDetaiels = new Intent(View.getContext(), TaskDetailPage.class);
                 goToDetaiels.putExtra("TaskName" , task.getTitle());
                 goToDetaiels.putExtra("TaskBody" , task.getBody());
@@ -70,12 +70,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.task = allTasks.get(position);
 
         TextView titleTask = holder.itemView.findViewById(R.id.textTitle);
-        TextView bodyTask = holder.itemView.findViewById(R.id.textBody);
-        TextView stateTask = holder.itemView.findViewById(R.id.textState);
+//        TextView bodyTask = holder.itemView.findViewById(R.id.textBody);
+//        TextView stateTask = holder.itemView.findViewById(R.id.textState);
 
         titleTask.setText(holder.task.getTitle());
-        bodyTask.setText(holder.task.getBody());
-        stateTask.setText(holder.task.getState());
+//        bodyTask.setText(holder.task.getBody());
+//        stateTask.setText(holder.task.getState());
 
     }
 

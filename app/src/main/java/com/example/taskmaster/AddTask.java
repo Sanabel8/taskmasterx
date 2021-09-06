@@ -43,7 +43,7 @@ public class AddTask extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Add Task Done !", Toast.LENGTH_SHORT).show();
 
                 Task task = new Task(editTitle.getText().toString(),editDescription.getText().toString(),editstate.getText().toString());
-                TaskDb db = Room.databaseBuilder(getApplicationContext(),TaskDb.class, "taskdb").allowMainThreadQueries().build();
+                TaskDb db = Room.databaseBuilder(getApplicationContext(),TaskDb.class, "tasks").allowMainThreadQueries().build();
                 TaskDao dao = db.taskDao();
                 dao.insert(task);
 
