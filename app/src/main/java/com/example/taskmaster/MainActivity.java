@@ -3,24 +3,51 @@ package com.example.taskmaster;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    private List<com.amplifyframework.datastore.generated.model.Task> list = new ArrayList<>();
+    private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i("MyAmplifyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+        }
+        Amplify.DataStore.observe(com.amplifyframework.datastore.generated.model.Task.class,
+                started -> Log.i("MyAmplifyApp", "Observation began."),
+                change -> Log.i("MyAmplifyApp", change.item().toString()),
+                failure -> Log.e("MyAmplifyApp", "Observation failed.", failure),
+                () -> Log.i("MyAmplifyApp", "Observation complete.")
+        );
 
 
         Button btnAddTask = (Button) findViewById(R.id.addTaskBtn);
@@ -28,79 +55,62 @@ public class MainActivity extends AppCompatActivity {
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToAddTask = new Intent(MainActivity.this,AddTask.class);
+                Intent goToAddTask = new Intent(MainActivity.this, AddTask.class);
                 startActivity(goToAddTask);
             }
         });
 
 
-//        Button btnAllTask = (Button) findViewById(R.id.allTaskBtn);
-//
-//        btnAllTask.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goToAllTask = new Intent(MainActivity.this,AllTask.class);
-//                startActivity(goToAllTask);
-//            }
-//        });
-
-        //lab27
-//        Button showtbtn = findViewById(R.id.showingBtn);
-//        showtbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goToShowing = new Intent(MainActivity.this,SettingsPage.class);
-//
-//                startActivity(goToShowing);
-//            }
-//        });
-//        Button displayBtn = findViewById(R.id.displayingBtn);
-//        displayBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goTodisplay = new Intent(MainActivity.this,SettingsPage.class);
-//                startActivity(goTodisplay);
-//            }
-//        });
         Button settingbtn = findViewById(R.id.settitngbtn);
         settingbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToSettingPage = new Intent(MainActivity.this,SettingsPage.class);
+                Intent goToSettingPage = new Intent(MainActivity.this, SettingsPage.class);
                 startActivity(goToSettingPage);
             }
         });
 
 
-//        //lab28
-//        ArrayList<Task> allTasks = new ArrayList<Task>();
-//        allTasks.add(new Task("Helping people"
-//                ,"Happiness begins from the moment you do something for others. Those who consistently help others, are happy, and do not come across any obstacles in their lives. Research indicates that they are less stressed and experience improved mental health."
-//                ,"state: new"));
-//        allTasks.add(new Task("volunteer skills",
-//                "Volunteering is described as an unpaid activity where someone gives their time to help a not-for-profit organisation or an individual who they are not related to."
-//                ,"state: assigned"));
-//        allTasks.add(new Task("watching match",
-//                "Find people watching match stock images in HD and millions of other royalty-free stock photos, illustrations and vectors in the Shutterstock collection."
-//                ,"state: in progress"));
-//        allTasks.add(new Task("learning cooking",
-//                "Expand your mind. Learning to cook will help you understand world cultures, customs and flavors. You will also learn life skills like eating healthy, budgeting ..."
-//                ,"state: complete"));
+//        TaskDb taskDB = Room.databaseBuilder(getApplicationContext(), TaskDb.class, "tasks").allowMainThreadQueries().build();
+
+//        List<Task> list;
+        list = new ArrayList<>();
+//        TaskDao taskDao;
+//        taskDao = taskDB.taskDao();
+//        infoForList = taskDao.getAll();
 
 
-        TaskDb taskDB = Room.databaseBuilder(getApplicationContext(), TaskDb.class, "tasks").allowMainThreadQueries().build();
-
-        List<Task> infoForList;
-        TaskDao taskDao;
-        taskDao = taskDB.taskDao();
-        infoForList = taskDao.getAll();
 
         // get the recycler view
         RecyclerView allTASKsRecuclerView = findViewById(R.id.recycleViewListtask);
         // set a layout manager for this view
         allTASKsRecuclerView.setLayoutManager(new LinearLayoutManager(this));
         // set the adapter for this recyclerView
-        allTASKsRecuclerView.setAdapter(new TaskAdapter(infoForList));
+        allTASKsRecuclerView.setAdapter(new TaskAdapter(list));
+
+        Handler handler = new Handler(Looper.getMainLooper(),
+                new Handler.Callback() {
+                    @Override
+                    public boolean handleMessage(@NonNull Message msg) {
+                        allTASKsRecuclerView.getAdapter().notifyDataSetChanged();
+                        return false;
+                    }
+                });
+        Amplify.API.query(
+                ModelQuery.list(com.amplifyframework.datastore.generated.model.Task.class),
+                response -> {
+
+                    for (com.amplifyframework.datastore.generated.model.Task todo : response.getData()) {
+                        Log.i("MyAmplifyApp", todo.getTitle());
+                        list.add(todo);
+                        System.out.println(todo.getTitle());
+                    }
+                    handler.sendEmptyMessage(1);
+                },
+                error -> Log.e("MyAmplifyApp", "Query failure", error)
+        );
+
+
 
     }
 

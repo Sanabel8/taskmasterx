@@ -10,8 +10,11 @@ import static org.junit.Assert.assertEquals;
 
 import android.content.Context;
 
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Rule;
@@ -24,6 +27,7 @@ import org.junit.runner.RunWith;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
+@LargeTest
 public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() {
@@ -32,25 +36,41 @@ public class ExampleInstrumentedTest {
         assertEquals("com.example.taskmaster", appContext.getPackageName());
     }
 
-
-
     @Rule public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
 
 
 
     @Test
-    public void MainActivityTest() {
-        onView(withId(R.id.showingBtn)).perform(click());
+    public void test1() {
+        onView(withText("My tasks")).check(matches(isDisplayed()));
     }
 
     @Test
-    public void MainActivityTest2() {
-        onView(withId(R.id.displayingBtn)).perform(click());
-  }
-
-    @Test
-    public void MainActivityTest3() {
-        onView(withText(R.id.settitngbtn)).perform().check(matches(isDisplayed()));
+    public void test2() {
+        Espresso.onView(withId(R.id.heroimg)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void test3() {
+        Espresso.onView(withId(R.id.settitngbtn)).perform(click());
+        Espresso.onView(withId(R.id.titleForSettingPage)).check(matches(ViewMatchers.withText("Welcome ")));
+
+    }
+    @Test
+    public void test4() {
+//        onView(ViewMatchers.withId(R.id.addTaskBtn)).check(matches(isDisplayed()));
+//      addText   onView(ViewMatchers.withId(R.id.home2)).check(matches(isDisplayed()));
+        Espresso.onView(withId(R.id.addTaskBtn)).perform(click());
+        Espresso.onView(withId(R.id.addText)).check(matches(ViewMatchers.withText("title task")));
+
+
+
+    }
+    @Test
+    public void test5() {
+        onView(withId(R.id.hiUserName)).check(matches(isDisplayed()));
+    }
+    @Test
+    public void test6() {
+        Espresso.onView(ViewMatchers.withId(R.id.recycleViewListtask)).check(matches(isDisplayed()));    }
 }

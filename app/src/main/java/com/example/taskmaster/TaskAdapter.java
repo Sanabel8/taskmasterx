@@ -9,17 +9,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.datastore.generated.model.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     // create list to bind the data by adapter
-    List<Task> allTasks = new ArrayList<Task>();
+//    List<Task> allTasks = new ArrayList<Task>();
+    List<com.amplifyframework.datastore.generated.model.Task> allTasks = new ArrayList<com.amplifyframework.datastore.generated.model.Task>();
 
 
     //create constructor
-    public TaskAdapter(List<Task> allTasks){
+    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> allTasks){
         this.allTasks = allTasks;
     }
 
@@ -39,15 +42,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 goToDetaiels.putExtra("TaskState" , task.getState());
                 View.getContext().startActivity(goToDetaiels);
             });
-//            itemView.findViewById(R.id.goToDetailesPage).setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent goToDetailPageActivity = new Intent(view.getContext(),TaskDetailPage.class);
-//                    goToDetailPageActivity.putExtra("taskName",task.title);
-//                    view.getContext().startActivity(goToDetailPageActivity);
-//                }
-//            });
-
+//
 
         }
 
