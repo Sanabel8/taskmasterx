@@ -81,7 +81,33 @@ Ensure that the description and status of a tapped task are also displayed on th
 ![detalies-page](screenshote\detailes29.jpeg)
 
 
+# Lab: 31 - Espresso and Polish
+## Overview
+## Feature Tasks
+### Espresso Testing
+Add Espresso to your application, and use it to test basic functionality of the main components of your application. For example:
 
+. assert that important UI elements are displayed on the page
+. tap on a task, and assert that the resulting activity displays the name of that task
+. edit the user’s username, and assert that it says the correct thing on the homepage
+
+
+
+
+# lab 32- Integrating AWS for Cloud Data Storage
+## Overview
+will gain a scalable backend by using AWS Amplify. We’ll continue to work with Amplify to add more cloud functionality for the rest of the course
+
+## Feature Tasks
+
+ ### Tasks Are Cloudy
+Using the amplify add api command, create a Task resource that replicates our existing Task schema. Update all references to the Task data to instead use AWS Amplify to access your data in DynamoDB instead of in Room.
+
+### Add Task Form
+Modify your Add Task form to save the data entered in as a Task to DynamoDB.
+
+### Homepage
+Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB.
 
 
 
