@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,19 @@ public class SettingsPage extends AppCompatActivity {
 
                 Intent intent = new Intent(SettingsPage.this,MainActivity.class);
                 startActivity(intent);
+
+
+                RadioButton rbb1 = findViewById(R.id.radioButton4);
+                RadioButton rbb2 = findViewById(R.id.rb2);
+                RadioButton rbb3 = findViewById(R.id.rb3);
+
+                if (rbb1.isChecked()){
+                    sharedPreferencesEditor.putString("team", rbb1.getText().toString());
+                }else if(rbb2.isChecked()){
+                    sharedPreferencesEditor.putString("team", rbb2.getText().toString());
+                }else if(rbb3.isChecked()){
+                    sharedPreferencesEditor.putString("team", rbb3.getText().toString());
+                }
             }
 
 
