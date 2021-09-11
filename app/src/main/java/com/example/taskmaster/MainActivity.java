@@ -3,16 +3,27 @@ package com.example.taskmaster;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Task;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,35 +44,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-//        Button btnAllTask = (Button) findViewById(R.id.allTaskBtn);
-//
-//        btnAllTask.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goToAllTask = new Intent(MainActivity.this,AllTask.class);
-//                startActivity(goToAllTask);
-//            }
-//        });
-
-        //lab27
-//        Button showtbtn = findViewById(R.id.showingBtn);
-//        showtbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goToShowing = new Intent(MainActivity.this,SettingsPage.class);
-//
-//                startActivity(goToShowing);
-//            }
-//        });
-//        Button displayBtn = findViewById(R.id.displayingBtn);
-//        displayBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goTodisplay = new Intent(MainActivity.this,SettingsPage.class);
-//                startActivity(goTodisplay);
-//            }
-//        });
         Button settingbtn = findViewById(R.id.settitngbtn);
         settingbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,21 +53,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        TaskDb taskDB = Room.databaseBuilder(getApplicationContext(), TaskDb.class, "tasks").allowMainThreadQueries().build();
 
+//        List<Task> infoForList ;
+//        TaskDao taskDao;
+//        taskDao = taskDB.taskDao();
+//        infoForList = taskDao.getAll();
 
-        TaskDb taskDB = Room.databaseBuilder(getApplicationContext(), TaskDb.class, "tasks").allowMainThreadQueries().build();
-
-        List<Task> infoForList;
-        TaskDao taskDao;
-        taskDao = taskDB.taskDao();
-        infoForList = taskDao.getAll();
-
-        // get the recycler view
         RecyclerView allTASKsRecuclerView = findViewById(R.id.recycleViewListtask);
-        // set a layout manager for this view
+        Handler handler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
+            @Override
+            public boolean handleMessage(@NonNull Message message) {
+                allTASKsRecuclerView.getAdapter().notifyDataSetChanged();
+                return false;
+            }
+        });
+
+        try {
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i("MyAmplifyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+        }
+        List<Task> allTasksData = new ArrayList<>();
+        Amplify.API.query(
+                ModelQuery.list(Task.class),
+                response -> {
+                    for (Task task : response.getData()) {
+                        Log.i("MyAmplifyApp", task.getBody());
+                        allTasksData.add(task);
+                    }
+                    handler.sendEmptyMessage(1);
+                    Log.i("MyAmplifyApp", "outsoid the loop");
+                },
+                error -> Log.e("MyAmplifyApp", "Query failure", error)
+        );
+
         allTASKsRecuclerView.setLayoutManager(new LinearLayoutManager(this));
         // set the adapter for this recyclerView
-        allTASKsRecuclerView.setAdapter(new TaskAdapter(infoForList));
+        allTASKsRecuclerView.setAdapter(new TaskAdapter(allTasksData));
 
     }
 

@@ -15,8 +15,6 @@ public class TaskDetailPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail_page);
 
-//        Intent goToHome = new Intent(TaskDetailPage.this,AllTask.class);
-//        startActivity(goToHome);
         Button goHome = findViewById(R.id.home2);
         goHome.setOnClickListener(new View.OnClickListener() {
             @Override

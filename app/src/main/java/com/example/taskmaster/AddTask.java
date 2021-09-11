@@ -21,31 +21,31 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-
-        Button topBtn =(Button) findViewById(R.id.TopBtnToMain);
+        Button topBtn = (Button) findViewById(R.id.TopBtnToMain);
         topBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToMain = new Intent(AddTask.this,MainActivity.class);
+                Intent goToMain = new Intent(AddTask.this, MainActivity.class);
                 startActivity(goToMain);
             }
         });
 
 
-
-        EditText editTitle = findViewById(R.id.taskTitleediting);
-        EditText editDescription = findViewById(R.id.editingDescription);
-        EditText editstate= findViewById(R.id.editState);
-
         Button addTaskPageBtn = findViewById(R.id.submitbtn);
         addTaskPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String titleForTask=editTitle.getText().toString();
-//                String descriptionTask =editDescription.getText().toString();
-//                String state = inputState.getText().toString();
+
+                EditText editTitle = findViewById(R.id.taskTitleediting);
+                EditText editDescription = findViewById(R.id.editingDescription);
+                EditText editstate = findViewById(R.id.editState);
+
 
                 Toast.makeText(getApplicationContext(), "Add Task Done !", Toast.LENGTH_SHORT).show();
 
@@ -60,20 +60,18 @@ public class AddTask extends AppCompatActivity {
                         .state(editstate.getText().toString())
                         .build();
 
-                Amplify.API.mutate(
-                        ModelMutation.create(task),
+                Amplify.API.mutate(ModelMutation.create(task),
                         response -> Log.i("MyAmplifyApp", "Added task with id: " + response.getData().getId()),
                         error -> Log.e("MyAmplifyApp", "Create failed", error)
                 );
 
 
-                Intent gotToHome = new Intent(AddTask.this , MainActivity.class);
+                Intent gotToHome = new Intent(AddTask.this, MainActivity.class);
                 startActivity(gotToHome);
             }
         });
 
-
-
-
     }
+
+
 }
