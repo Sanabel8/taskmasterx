@@ -35,8 +35,49 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apitaskmasterx"
       },
-      "lastPushTimeStamp": "2021-09-11T09:16:30.326Z",
+      "lastPushTimeStamp": "2021-09-13T11:09:11.605Z",
       "lastPushDirHash": "bLBF0eK2htxhFwDhinRvMX7kOvk="
+    }
+  },
+  "auth": {
+    "taskmasterxccd8bf5d": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "loginMechanisms": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/auth/taskmasterxccd8bf5d-cloudformation-template.yml",
+        "logicalId": "authtaskmasterxccd8bf5d"
+      },
+      "lastPushTimeStamp": "2021-09-13T11:09:11.672Z",
+      "output": {
+        "UserPoolId": "us-east-1_a4L6W6IlW",
+        "AppClientIDWeb": "17k01d7b20l1mopr997sditd9p",
+        "AppClientID": "4q0hkkqs8qqn1gbbvhrfpfq9v8",
+        "IdentityPoolId": "us-east-1:53df0ae4-4990-4af4-83de-7f27c90837aa",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:216795297223:userpool/us-east-1_a4L6W6IlW",
+        "IdentityPoolName": "taskmasterxccd8bf5d_identitypool_ccd8bf5d__test",
+        "UserPoolName": "taskmasterxccd8bf5d_userpool_ccd8bf5d",
+        "HostedUIDomain": "taskmasterx5a789f36-5a789f36-test",
+        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"myapp://callback/\"],\"LogoutURLs\":[\"myapp://signout/\"]}"
+      },
+      "lastPushDirHash": "gb1zD4mlNrt7LRpTT3BDeEIeFfQ="
     }
   }
 }

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
@@ -29,11 +30,46 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public void logIn(){
+        Amplify.Auth.signInWithWebUI(
+                this,
+                result -> Log.i("AuthQuickStart", result.toString()),
+                error -> Log.e("AuthQuickStart", error.toString())
+        );
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try {
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(new AWSApiPlugin());
+            // Add this line, to include the Auth plugin.
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i("MyAmplifyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+        }
+
+        logIn();
+
+       Button logOut = (Button) findViewById(R.id.logOutBtn);
+       logOut.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Amplify.Auth.signOut(
+                       () -> {
+                           logIn();
+                           Log.i("AuthQuickstart", "Signed out successfully");
+                       },
+                       error -> Log.e("AuthQuickstart", error.toString())
+               );
+           }
+       });
 
         Button btnAddTask = (Button) findViewById(R.id.addTaskBtn);
         btnAddTask.setText("add Task");
@@ -60,17 +96,6 @@ public class MainActivity extends AppCompatActivity {
 //        TaskDao taskDao;
 //        taskDao = taskDB.taskDao();
 //        infoForList = taskDao.getAll();
-
-        try {
-            // Add these lines to add the AWSApiPlugin plugins
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.configure(getApplicationContext());
-
-            Log.i("MyAmplifyApp", "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
-        }
-
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         String team = sharedPreferences.getString("team", "team");
