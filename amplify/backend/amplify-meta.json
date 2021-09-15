@@ -35,8 +35,8 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apitaskmasterx"
       },
-      "lastPushTimeStamp": "2021-09-13T11:09:11.605Z",
-      "lastPushDirHash": "bLBF0eK2htxhFwDhinRvMX7kOvk="
+      "lastPushTimeStamp": "2021-09-15T01:29:18.444Z",
+      "lastPushDirHash": "UPKGScaNIDfeecO3uwLjw8WN1rY="
     }
   },
   "auth": {
@@ -65,7 +65,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/auth/taskmasterxccd8bf5d-cloudformation-template.yml",
         "logicalId": "authtaskmasterxccd8bf5d"
       },
-      "lastPushTimeStamp": "2021-09-13T11:09:11.672Z",
+      "lastPushTimeStamp": "2021-09-15T01:29:18.357Z",
       "output": {
         "UserPoolId": "us-east-1_a4L6W6IlW",
         "AppClientIDWeb": "17k01d7b20l1mopr997sditd9p",
@@ -77,7 +77,23 @@
         "HostedUIDomain": "taskmasterx5a789f36-5a789f36-test",
         "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"myapp://callback/\"],\"LogoutURLs\":[\"myapp://signout/\"]}"
       },
-      "lastPushDirHash": "gb1zD4mlNrt7LRpTT3BDeEIeFfQ="
+      "lastPushDirHash": "Mze+KxxoHSo6+3/sfcgrHjmg6oQ="
+    }
+  },
+  "storage": {
+    "s3textmaster": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+        "logicalId": "storages3textmaster"
+      },
+      "lastPushTimeStamp": "2021-09-15T01:29:18.389Z",
+      "output": {
+        "BucketName": "taskmastercontent163127-test",
+        "Region": "us-east-1"
+      },
+      "lastPushDirHash": "oRCLiplGwJlSZp1d0+Ky99K91a4="
     }
   }
 }

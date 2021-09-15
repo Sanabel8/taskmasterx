@@ -37,9 +37,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             this.itemView = itemView;
             itemView.findViewById(R.id.goToDetailesPage).setOnClickListener(View->{
                 Intent goToDetaiels = new Intent(View.getContext(), TaskDetailPage.class);
-                goToDetaiels.putExtra("TaskName" , task.getTitle());
-                goToDetaiels.putExtra("TaskBody" , task.getBody());
-                goToDetaiels.putExtra("TaskState" , task.getState());
+                goToDetaiels.putExtra("title" , task.getTitle());
+                goToDetaiels.putExtra("body" , task.getBody());
+                goToDetaiels.putExtra("state" , task.getState());
+                goToDetaiels.putExtra("imgName" , task.getImgName());
                 View.getContext().startActivity(goToDetaiels);
             });
 
