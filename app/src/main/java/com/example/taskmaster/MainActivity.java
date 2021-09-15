@@ -24,6 +24,7 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +33,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void logIn(){
         Amplify.Auth.signInWithWebUI(
-                this,
-                result -> Log.i("AuthQuickStart", result.toString()),
+                MainActivity.this,
+                result -> {Log.i("AuthQuickStart", result.toString());},
                 error -> Log.e("AuthQuickStart", error.toString())
         );
+    }
+    //to check the state for login
+    public String checkLoginStatus(){
+        String username="";
+        Amplify.Auth.fetchAuthSession(
+                result -> {
+                    Log.i("AmplifyQuickstart", String.valueOf(result.isSignedIn()));
+                    if (!result.isSignedIn()){
+                        logIn();
+                    }
+                },
+                error -> Log.e("AmplifyQuickstart", error.toString())
+        );
+        username = com.amazonaws.mobile.client.AWSMobileClient.getInstance().getUsername();
+        return username;
     }
 
     @Override
@@ -44,10 +60,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         try {
-            // Add these lines to add the AWSApiPlugin plugins
             Amplify.addPlugin(new AWSApiPlugin());
-            // Add this line, to include the Auth plugin.
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.configure(getApplicationContext());
 
             Log.i("MyAmplifyApp", "Initialized Amplify");
@@ -161,14 +176,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        String welcomeMessage = "Hello ";
+
+        String username = checkLoginStatus();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String nameFromSetting = sharedPreferences.getString("username", "sanbael");
+//        String nameFromSetting = sharedPreferences.getString("username", "sanbael");
         String team = sharedPreferences.getString("team", "team");
 
         TextView nameView = findViewById(R.id.hiUserName);
-        nameView.setText(welcomeMessage + nameFromSetting);
+        nameView.setText("hello" + username);
 
         TextView teamName = findViewById(R.id.teamName);
         teamName.setText(team);

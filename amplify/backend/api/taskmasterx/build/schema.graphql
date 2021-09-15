@@ -4,6 +4,7 @@ type Task {
   title: String!
   body: String
   state: String
+  imgName: String
   team: Team!
   _version: Int!
   _deleted: Boolean
@@ -113,6 +114,7 @@ input ModelTaskFilterInput {
   title: ModelStringInput
   body: ModelStringInput
   state: ModelStringInput
+  imgName: ModelStringInput
   and: [ModelTaskFilterInput]
   or: [ModelTaskFilterInput]
   not: ModelTaskFilterInput
@@ -146,6 +148,7 @@ input CreateTaskInput {
   title: String!
   body: String
   state: String
+  imgName: String
   _version: Int
 }
 
@@ -155,6 +158,7 @@ input UpdateTaskInput {
   title: String
   body: String
   state: String
+  imgName: String
   _version: Int
 }
 
@@ -177,6 +181,7 @@ input ModelTaskConditionInput {
   title: ModelStringInput
   body: ModelStringInput
   state: ModelStringInput
+  imgName: ModelStringInput
   and: [ModelTaskConditionInput]
   or: [ModelTaskConditionInput]
   not: ModelTaskConditionInput

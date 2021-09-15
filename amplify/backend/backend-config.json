@@ -40,5 +40,11 @@
         ]
       }
     }
+  },
+  "storage": {
+    "s3textmaster": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

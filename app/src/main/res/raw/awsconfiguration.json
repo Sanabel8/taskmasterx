@@ -59,5 +59,11 @@
                 "SMS"
             ]
         }
+    },
+    "S3TransferUtility": {
+        "Default": {
+            "Bucket": "taskmastercontent163127-test",
+            "Region": "us-east-1"
+        }
     }
 }
