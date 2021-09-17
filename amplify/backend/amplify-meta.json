@@ -35,7 +35,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apitaskmasterx"
       },
-      "lastPushTimeStamp": "2021-09-15T01:29:18.444Z",
+      "lastPushTimeStamp": "2021-09-17T19:56:54.380Z",
       "lastPushDirHash": "UPKGScaNIDfeecO3uwLjw8WN1rY="
     }
   },
@@ -65,7 +65,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/auth/taskmasterxccd8bf5d-cloudformation-template.yml",
         "logicalId": "authtaskmasterxccd8bf5d"
       },
-      "lastPushTimeStamp": "2021-09-15T01:29:18.357Z",
+      "lastPushTimeStamp": "2021-09-17T19:56:54.398Z",
       "output": {
         "UserPoolId": "us-east-1_a4L6W6IlW",
         "AppClientIDWeb": "17k01d7b20l1mopr997sditd9p",
@@ -88,12 +88,36 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
         "logicalId": "storages3textmaster"
       },
-      "lastPushTimeStamp": "2021-09-15T01:29:18.389Z",
+      "lastPushTimeStamp": "2021-09-17T19:56:54.416Z",
       "output": {
         "BucketName": "taskmastercontent163127-test",
         "Region": "us-east-1"
       },
       "lastPushDirHash": "oRCLiplGwJlSZp1d0+Ky99K91a4="
+    }
+  },
+  "notifications": {
+    "taskmasterxK8bLn": {
+      "service": "Pinpoint",
+      "output": {
+        "Arn": "arn:aws:mobiletargeting:us-east-1:216795297223:apps/8846149eff0f45c6b7238e80adb280c8",
+        "Id": "8846149eff0f45c6b7238e80adb280c8",
+        "Name": "taskmasterxK8bLn-test",
+        "tags": {},
+        "Region": "us-east-1",
+        "FCM": {
+          "ApplicationId": "8846149eff0f45c6b7238e80adb280c8",
+          "CreationDate": "2021-09-15T06:53:31.958Z",
+          "Enabled": true,
+          "HasCredential": true,
+          "Id": "gcm",
+          "IsArchived": false,
+          "LastModifiedDate": "2021-09-15T06:53:31.958Z",
+          "Platform": "GCM",
+          "Version": 1
+        }
+      },
+      "lastPushTimeStamp": "2021-09-15T06:53:21.567Z"
     }
   }
 }
