@@ -34,9 +34,9 @@ public class TaskDetailPage extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String forName = intent.getExtras().getString("TaskName");
-        String forBody = intent.getExtras().getString("TaskBody");
-        String forState = intent.getExtras().getString("TaskState");
+        String forName = intent.getExtras().getString("title");
+        String forBody = intent.getExtras().getString("body");
+        String forState = intent.getExtras().getString("state");
 
         TextView textViewForName = findViewById(R.id.nameOfTask);
         TextView textViewForBody = findViewById(R.id.textForBody);

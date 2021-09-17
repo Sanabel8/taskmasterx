@@ -83,6 +83,17 @@
                         "Bucket": "taskmastercontent163127-test",
                         "Region": "us-east-1"
                     }
+                },
+                "PinpointAnalytics": {
+                    "Default": {
+                        "AppId": "8846149eff0f45c6b7238e80adb280c8",
+                        "Region": "us-east-1"
+                    }
+                },
+                "PinpointTargeting": {
+                    "Default": {
+                        "Region": "us-east-1"
+                    }
                 }
             }
         }
