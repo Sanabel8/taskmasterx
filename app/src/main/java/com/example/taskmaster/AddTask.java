@@ -38,6 +38,12 @@ public class AddTask extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        Intent intent = getIntent();
+        if (intent.getType() != null && intent.getType().equals("text/plain")) {
+            EditText desc = findViewById(R.id.editingDescription);
+            desc.setText(intent.getExtras().get(Intent.EXTRA_TEXT).toString());
+        }
+
         List<Team> teamList = new ArrayList<>();
 
         Amplify.API.query(
