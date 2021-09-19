@@ -149,3 +149,20 @@ On the “Add a Task” activity, allow users to optionally select a file to att
 
 ### Displaying Files
 On the Task detail activity, if there is a file that is an image associated with a particular Task, that image should be displayed within that activity.
+
+# Lab: 38 - Notifications
+## Overview
+add the ability for push notifications to be delivered to your app from the cloud.
+
+## Feature Tasks
+Notifications on Task Creation
+When a new task is created within a team, alert all users who are a part of that team about that new task.
+
+# Lab: 41 - Intent Filters
+## Overview
+ allow users to “share” a text from another app and open TaskMaster
+
+## Feature Tasks
+Adding a Task from Another Application
+
+Also allow users to share text content from another application, and have that automatically populated on the Add a Task activity.
