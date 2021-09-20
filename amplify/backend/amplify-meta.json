@@ -35,8 +35,8 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apitaskmasterx"
       },
-      "lastPushTimeStamp": "2021-09-17T19:56:54.380Z",
-      "lastPushDirHash": "UPKGScaNIDfeecO3uwLjw8WN1rY="
+      "lastPushTimeStamp": "2021-09-20T19:45:58.792Z",
+      "lastPushDirHash": "Q0RHgjfUX4MrfCmpYQmxaXWNZFQ="
     }
   },
   "auth": {
@@ -65,7 +65,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/auth/taskmasterxccd8bf5d-cloudformation-template.yml",
         "logicalId": "authtaskmasterxccd8bf5d"
       },
-      "lastPushTimeStamp": "2021-09-17T19:56:54.398Z",
+      "lastPushTimeStamp": "2021-09-20T19:45:58.811Z",
       "output": {
         "UserPoolId": "us-east-1_a4L6W6IlW",
         "AppClientIDWeb": "17k01d7b20l1mopr997sditd9p",
@@ -88,7 +88,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmasterx-test-163127-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
         "logicalId": "storages3textmaster"
       },
-      "lastPushTimeStamp": "2021-09-17T19:56:54.416Z",
+      "lastPushTimeStamp": "2021-09-20T19:45:58.832Z",
       "output": {
         "BucketName": "taskmastercontent163127-test",
         "Region": "us-east-1"

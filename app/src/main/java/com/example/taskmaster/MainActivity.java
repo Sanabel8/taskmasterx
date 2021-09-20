@@ -83,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return pinpointManager;
     }
-
-
     public void logIn() {
         Amplify.Auth.signInWithWebUI(
                 MainActivity.this,

@@ -1,6 +1,9 @@
 package com.example.taskmaster;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,12 +14,16 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -24,11 +31,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddTask extends AppCompatActivity {
+    //for location
+    private FusedLocationProviderClient fusedLocationClient;
+    private String lon;
+    private String lat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+
+        //for location
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION}, 1234);
+
+            boolean x = ActivityCompat
+                    .checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                    PackageManager.PERMISSION_GRANTED
+                    &&
+                    ActivityCompat
+                            .checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
+                            PackageManager.PERMISSION_GRANTED;
+
+
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            // Logic to handle location object
+                            double longitude = location.getLongitude();
+                            double latitude = location.getLatitude();
+
+                            lat = String.valueOf(longitude);
+//                            lat.setText((int) latitude);
+                            lon = String.valueOf(latitude);
+//                            lon.setText((int) longitude);
+                        }
+                    }
+
+                });
+        ///////end location////////
 
     }
 
@@ -119,9 +177,12 @@ public class AddTask extends AppCompatActivity {
                         .body(editDescription.getText().toString())
                         .state(editstate.getText().toString())
                         .imgName(imgName)
+                        .lon(lon)
+                        .lat(lat)
                         .team(team)
                         .build();
-
+//         .lat(lat)
+//         .lon(lon)
                 Amplify.API.mutate(ModelMutation.create(task1),
                         response -> Log.i("MyAmplifyApp", "Added task with id: " + response.getData().getId()),
                         error -> Log.e("MyAmplifyApp", "Create failed", error));
