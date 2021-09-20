@@ -41,6 +41,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 goToDetaiels.putExtra("body" , task.getBody());
                 goToDetaiels.putExtra("state" , task.getState());
                 goToDetaiels.putExtra("imgName" , task.getImgName());
+                goToDetaiels.putExtra("lon" , task.getLon());
+                goToDetaiels.putExtra("lat" , task.getLat());
                 View.getContext().startActivity(goToDetaiels);
             });
 

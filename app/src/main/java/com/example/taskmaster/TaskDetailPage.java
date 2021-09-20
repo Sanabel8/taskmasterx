@@ -37,15 +37,18 @@ public class TaskDetailPage extends AppCompatActivity {
         String forName = intent.getExtras().getString("title");
         String forBody = intent.getExtras().getString("body");
         String forState = intent.getExtras().getString("state");
+//        String forLatLog = intent.getExtras().getString("state");
 
         TextView textViewForName = findViewById(R.id.nameOfTask);
         TextView textViewForBody = findViewById(R.id.textForBody);
         TextView textViewForState = findViewById(R.id.textForState);
-
+        TextView longAndLat = findViewById(R.id.viewlatandLog);
 
         textViewForName.setText(forName);
         textViewForBody.setText(forBody);
         textViewForState.setText(forState);
+        longAndLat.setText("longtitude= "+intent.getExtras().getString("lon") +"\n" + " latitude= "+intent.getExtras().getString("lat"));
+
 
         //to download image
         Amplify.Storage.downloadFile(

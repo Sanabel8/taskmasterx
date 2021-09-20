@@ -8,6 +8,8 @@ type Task @model
   body: String
   state: String
   imgName: String
+  lon: String
+  lat: String
   team: Team! @connection(fields: ["teamId"])
 }
 type Team @model {

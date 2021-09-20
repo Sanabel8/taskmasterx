@@ -166,3 +166,15 @@ When a new task is created within a team, alert all users who are a part of that
 Adding a Task from Another Application
 
 Also allow users to share text content from another application, and have that automatically populated on the Add a Task activity.
+
+
+# Location 
+## overview
+add the user’s location to a task automatically when that task is created.
+
+## Feature Tasks
+### Location
+When the user adds a task, their location should be retrieved and included as part of the saved Task.
+
+### Displaying Location
+On the Task Detail activity, the location of a Task should be displayed if it exists.

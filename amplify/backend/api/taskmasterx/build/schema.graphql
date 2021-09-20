@@ -5,6 +5,8 @@ type Task {
   body: String
   state: String
   imgName: String
+  lon: String
+  lat: String
   team: Team!
   _version: Int!
   _deleted: Boolean
@@ -115,6 +117,8 @@ input ModelTaskFilterInput {
   body: ModelStringInput
   state: ModelStringInput
   imgName: ModelStringInput
+  lon: ModelStringInput
+  lat: ModelStringInput
   and: [ModelTaskFilterInput]
   or: [ModelTaskFilterInput]
   not: ModelTaskFilterInput
@@ -149,6 +153,8 @@ input CreateTaskInput {
   body: String
   state: String
   imgName: String
+  lon: String
+  lat: String
   _version: Int
 }
 
@@ -159,6 +165,8 @@ input UpdateTaskInput {
   body: String
   state: String
   imgName: String
+  lon: String
+  lat: String
   _version: Int
 }
 
@@ -182,6 +190,8 @@ input ModelTaskConditionInput {
   body: ModelStringInput
   state: ModelStringInput
   imgName: ModelStringInput
+  lon: ModelStringInput
+  lat: ModelStringInput
   and: [ModelTaskConditionInput]
   or: [ModelTaskConditionInput]
   not: ModelTaskConditionInput
